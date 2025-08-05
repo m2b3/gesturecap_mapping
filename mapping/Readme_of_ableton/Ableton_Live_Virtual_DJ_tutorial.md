@@ -38,7 +38,7 @@ Instead of relying on a single complex Max patch that handles multiple landmarks
 4. **Mapping to Ableton Parameters**: Using Ableton Live’s native mapping feature, you can link the dials to any parameter in your session, including filter cutoff, synth parameters, reverb amount, track volume, and more.
 
 <div align="center">
-    <img src="mapping/Readme_of_ableton/flowchart_Mermaid_Chart-2025-08-05-191108.svg" alt="Pipeline structure" width="200">
+    <img src="flowchart _ Mermaid Chart-2025-08-05-191108.svg" alt="Pipeline structure" width="2000">
 </div>
 
 ## **Prerequisites**
