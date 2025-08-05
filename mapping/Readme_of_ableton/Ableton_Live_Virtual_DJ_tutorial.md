@@ -124,33 +124,13 @@ Example use:
 ### 3. Map the Control Dial to a Parameter:
 - Click on the title bar of the patch device to select it.
 - Enter Ableton's mapping mode by clicking the `MIDI` map button in the bottom right corner. Clear button on the left botton corner rest all the previos mapping. 
-- All mappable parameters in your session will turn yellow. Click on the parameter you wish to control (e.g., a filter's Frequency knob).
+- All mappable parameters in your session will turn (Yellow for gesture mapping from the Max Patch and Blue in ableton live for audio effect mapping). Click on the parameter you wish to control (e.g., a filter's Frequency knob).
 - Click on the dial within your Max for Live patch. A mapping will be created.
-- Your gesture will now control the audio parameter in real-time
+- Your gesture will now control the audio parameter in real-time.
 
 ### 4. Combine Multiple Patches:
 - To control multiple parameters with different gestures, drag more patches onto the same or different MIDI track. It does not matter as long as it is not in the same track as ur audio file. 
 - Example: Use `RHX.amxd` to control a filter and `RHY.amxd` to control reverb send. You can now control both effects independently with one hand.Or do one to many mapping through duplicate the mapping tracks. 
-
-## The Patch Library: Your Gesture Vocabulary
-
-Here are the primary patches available for use. Mix and match them to build your instrument. Again see updates in python file for extended vocabulary. 
-
-### Core Control Patches
-- `RHX.amxd`: Right Hand X-axis. Controls a dial based on horizontal hand movement.
-- `RHY.amxd`: Right Hand Y-axis. Controls a dial based on vertical hand movement.
-- `LHX.amxd`: Left Hand X-axis.
-- `LHY.amxd`: Left Hand Y-axis.
-
-### Expressive Musical Patches that done in my other max file but you could also used the built in audio effect through dials mapping in ableton live.
-- **Pitch Control Patch**: Maps a gesture to a musical pitch. Useful for playing melodies or arpeggios.
-- **Velocity Control Patch**: Maps the speed of your gesture to a dial. A faster hand movement results in a higher dial value. Perfect for controlling note velocity or effect intensity.
-- **Volume Control Patch**: A dedicated patch for controlling track volume or expression.
-
-### Experimental Patches
-- **Air Drumming Patch (In-Progress)**: Detects percussive "hit" gestures and sends a trigger that can be mapped to a drum rack or sampler. (just like aeroband without the stick) This is still under development.
-
-## Advanced Mapping Techniques
 
 ### One-to-Many Control
 Use a single gesture to control multiple parameters.
@@ -162,12 +142,36 @@ Use a single gesture to control multiple parameters.
 
 With this setup, you have independent, one to many mapping, four-dimensional control over your mix using just two hands.
 
+## The Patch Library: Your Gesture Vocabulary
+
+Here are the primary patches available for use. Mix and match them to build your instrument. Again see updates in python file for extended vocabulary. (This need to be done and finalised soon)
+
+### Core Control Patches
+- `RHX.amxd`: Right Hand X-axis. Controls a dial based on horizontal hand movement.
+- `RHY.amxd`: Right Hand Y-axis. Controls a dial based on vertical hand movement.
+- `LHX.amxd`: Left Hand X-axis.
+- `LHY.amxd`: Left Hand Y-axis.
+
+### The expressive musical patches created in my other Max/MSP file (a separate README on how to use the Max patch may also be uploaded, though it will likely be brief since Louis has already done something similar in PureData and my conversion to Max is quite basic). Alternatively, you can use the built-in audio effects by mapping the dials in Ableton Live.
+
+- **Pitch Control Patch**: Maps a gesture to a musical pitch. Useful for playing melodies or arpeggios.
+- **Velocity Control Patch**: Maps the speed of your gesture to a dial. A faster hand movement results in a higher dial value. Perfect for controlling note velocity or effect intensity.
+- **Volume Control Patch**: A dedicated patch for controlling track volume or expression.
+
+### Experimental Patches
+- **Air Drumming Patch (In-Progress)**: Detects percussive "hit" gestures and sends a trigger that can be mapped to a drum rack or sampler. (just like aeroband without the stick) This is still under development.
+
+ 
+
+
+
 ## Troubleshooting
 
 - **Dials are not moving?**
   1. Confirm the Python script is running and sending OSC data.
   2. Double-check that the IP address and Port number in the Max patch match what the Python script is sending to.
   3. Use an OSC monitor application to verify that OSC messages are being received on your machine.
+  4. make sure ableton live and max are not opening at the same time
 
 - **Control is jerky or unresponsive?**
   - This is likely an issue with the computer vision script. Ensure you have good lighting and a clear background for the best camera tracking results.
