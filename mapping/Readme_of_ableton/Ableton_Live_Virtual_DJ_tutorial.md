@@ -29,24 +29,24 @@ Instead of relying on a single complex Max patch that handles multiple landmarks
 - **Gesture Control**: Control pitch, volume, and effects parameters using hand gestures.
 - **Direct Landmark-to-Dial Mapping**: Remove parsing overhead by directly mapping landmarks to virtual dials in Ableton Live.
 - **Customisable Control Surface**: Drag and drop patches to create a custom control surface tailored to your performance.
-- **No Machine Learning/ LoM Toolboxes Required**: A simple, efficient, and easy-to-use solution for gesture-based control.
+- **No Machine Learning/ LoM Toolboxes Required**: A simple, easy-to-use solution for gesture-based control.
 
 ## **How It Works**
-1. **Gesture Recognition with Python**: A Python script uses a camera to detect hand gestures and track multiple landmarks, such as left and right hands, as well as individual fingers.
-2. **Sending OSC Messages**: The Python script streams the landmark coordinate data as OSC (Open Sound Control) messages.
-3. **Max for Live Patches**: Loaded into Ableton Live, Max patches listen for these OSC messages. Each patch exposes landmark data as a virtual dial.
-4. **Mapping to Ableton Parameters**: Using Ableton Live’s native mapping feature, you can link the dials to any parameter in your session, including filter cutoff, synth parameters, reverb amount, track volume, and more.
 
 <div align="center">
     <img src="flowchart _ Mermaid Chart-2025-08-05-191108.svg" alt="Pipeline structure" width="2000">
 </div>
+
+1. **Gesture Recognition with Python**: A Python script uses a camera to detect hand gestures and track multiple landmarks, such as left and right hands, as well as individual fingers.
+2. **Sending OSC Messages**: The Python script streams the landmark coordinate data as OSC (Open Sound Control) messages.
+3. **Max for Live Patches**: Loaded into Ableton Live, Max patches listen for these OSC messages. Each patch exposes landmark data as a virtual dial.
+4. **Mapping to Ableton Parameters**: Using Ableton Live’s native mapping feature, you can link the dials to any parameter in your session, including filter cutoff, synth parameters, reverb amount, track volume, and more.
 
 ## **Prerequisites**
 1. **Ableton Live** (with Max for Live installed).
 2. **Python Gesture Recognition Script** running and sending OSC messages to the correct IP and port. (refer to `python.md` or `debugging.md` for troubleshooting if necessary).
  
  
-
 
 ## **Part 1: Session Preparation & Track Importation**
 
