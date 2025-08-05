@@ -17,8 +17,8 @@ This demonstration uses six separated tracks from Rick Astley's **"Never Gonna G
 
 **Source**: Rick Astley - Never Gonna Give You Up  
   
+### Individual Track Names: [Find the sample track here](./mapping/MAX%20Ableton/Ableton%20and%20music%20sample/audio%20track)
 
-### Individual Track Names:[Find the sample track here]()
 - **Track 1**: Drums/Percussion
 - **Track 2**: Bass
 - **Track 3**: Lead Vocals
