@@ -15,9 +15,8 @@
 
 This demonstration uses six separated tracks from Rick Astley's **"Never Gonna Give You Up"** for testing the gesture control system. The individual track stems allow viewers to hear how different musical elements (drums, bass, vocals, etc.) respond to hand gestures.
 
-**Source**: Rick Astley - Never Gonna Give You Up  
-
-### Individual Track Names: [Find the sample track here](../../audio/Ableton%20and%20music%20sample/audio%20track)
+**Source**: Rick Astley - Never Gonna Give You Up 
+### Individual Track Names: [Find the sample track here](../MAX%20Ableton/Ableton%20and%20music%20sample/audio%20track)
 
 - **Track 1**: Drums/Percussion
 - **Track 2**: Bass
