@@ -16,7 +16,7 @@ Here is the demo video showcasing the system in action:
 [Watch demo on YouTube](https://www.youtube.com/watch?v=another-video-id)
 
 
-Instead of relying on a single complex Max patch that handles multiple landmarks simultaneously, this system uses multiple simple patches that can be combined as needed. Each patch serves a specific function. Musicians can load only the patches required for a specific performance, streamlining the workflow.
+Instead of relying on a single complex Max patch that handles multiple landmarks simultaneously, this system uses multiple simple patches that can be combined as needed. Each patch serves a specific function. Musicians can load only the patches required for a specific performance. 
 
 ### **Key Benefits:**
 - **Modular functionality**: Load only what you need.
