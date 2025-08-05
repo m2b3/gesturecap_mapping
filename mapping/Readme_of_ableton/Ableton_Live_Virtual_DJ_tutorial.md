@@ -1,6 +1,10 @@
-Here is the my version of custom-built DJ template for Ableton Live.  
+# **Custom-Built DJ Template for Ableton Live**
 
- 
+
+## **Overview**
+This custom-built DJ template reimagines how musicians interact with Digital Audio Workstations (DAWs) like Max for Live and Ableton Live by replacing traditional MIDI controllers with gesture recognition powered by Mediapipe. 
+
+Credit to Ellie Kelly, Manuel López,Noa Kemp for helping in constructing this patch. Credit to Martin Daigle for the base patch and the support.
 
 ### Demo Video
 
@@ -10,6 +14,38 @@ Here is the demo video showcasing the system in action:
 
  
 [Watch demo on YouTube](https://www.youtube.com/watch?v=another-video-id)
+
+
+Instead of relying on a single complex Max patch that handles multiple landmarks simultaneously, this system uses multiple simple patches that can be combined as needed. Each patch serves a specific function. Musicians can load only the patches required for a specific performance, streamlining the workflow.
+
+### **Key Benefits:**
+- **Modular functionality**: Load only what you need.
+- **Easier debugging**: Isolate issues to individual patches.
+- **Simultaneous patch operation**: Multiple patches can run at the same time without interference.
+- **Optimised performance**: Landmarks are filtered at the Python level to reduce network bandwidth and processing load, sending only the required data.
+- **Direct mapping**: Gesture control data is mapped directly to parameters, eliminating the need for complex parsing or receiver architectures.
+
+## **Key Features**
+- **Gesture Control**: Control pitch, volume, and effects parameters using hand gestures.
+- **Direct Landmark-to-Dial Mapping**: Remove parsing overhead by directly mapping landmarks to virtual dials in Ableton Live.
+- **Customisable Control Surface**: Drag and drop patches to create a custom control surface tailored to your performance.
+- **No Machine Learning/ LoM Toolboxes Required**: A simple, efficient, and easy-to-use solution for gesture-based control.
+
+## **How It Works**
+1. **Gesture Recognition with Python**: A Python script uses a camera to detect hand gestures and track multiple landmarks, such as left and right hands, as well as individual fingers.
+2. **Sending OSC Messages**: The Python script streams the landmark coordinate data as OSC (Open Sound Control) messages.
+3. **Max for Live Patches**: Loaded into Ableton Live, Max patches listen for these OSC messages. Each patch exposes landmark data as a virtual dial.
+4. **Mapping to Ableton Parameters**: Using Ableton Live’s native mapping feature, you can link the dials to any parameter in your session, including filter cutoff, synth parameters, reverb amount, track volume, and more.
+
+<div align="center">
+    <img src="mapping/Readme_of_ableton/flowchart_Mermaid_Chart-2025-08-05-191108.svg" alt="Pipeline structure" width="200">
+</div>
+
+## **Prerequisites**
+1. **Ableton Live** (with Max for Live installed).
+2. **Python Gesture Recognition Script** running and sending OSC messages to the correct IP and port. (refer to `python.md` or `debugging.md` for troubleshooting if necessary).
+ 
+ 
 
 
 ## **Part 1: Session Preparation & Track Importation**
@@ -63,43 +99,82 @@ Example use:
 ## **Tips**
 
 *   The most powerful effects are those used sparingly and with intention. A single, well-timed filter sweep is more effective than constant, chaotic effects.  
-  
-### Creating New Audio Tracks
-
-1.  Open Ableton Live project.
-2.  In either the **Session View** (vertical columns) or **Arrangement View** (horizontal timeline), go to the main menu at the top of the screen.
-3.  Click on **Create** > **Insert Audio Track**.
-4.  Alternatively,the keyboard shortcut:
-    *   **Mac**: `Cmd + T`
-    *   **Windows**: `Ctrl + T`
-
-### Loading Your Audio Files
-
-Now that you have six empty audio tracks, you can import your audio files.
-
-1.  Open your computer's file explorer (Finder on Mac, File Explorer on Windows) and navigate to where your audio files are saved.
-2.  Arrange your windows so you can see both Ableton Live and your folder of audio files.
-3.  Click and drag each audio file individually into its own dedicated audio track in Ableton Live.
-    *   In **Arrangement View**, drag each file to the start of a different track on the timeline.
-    *   In **Session View**, drag each file into an empty clip slot on a different track column.
-
-
-## 2. Load the Patch
-
-Next, you will create a separate track to load your patch. This patch is a **Max for Live device**, and you can load it as an instrument or an audio effect.
-
-### Step 1: Create a New Track for the Patch
-
-*   **If your patch is an instrument:** Create a MIDI track.
-    *   Go to **Create** > **Insert MIDI Track**.
-    *   **Mac Shortcut**: `Shift + Cmd + T`
-    *   **Windows Shortcut**: `Shift + Ctrl + T`
-*   **If your patch is an audio effect:** You can add it to an existing audio track or create a new audio track for it using the method described in the first section (`Cmd + T` or `Ctrl + T`).
-
-### Step 2: Drag the Patch into the Track
-
-1.  Locate your patch file. You can find it in Ableton's Browser under **Max for Live**, or you can drag it directly from your computer's file explorer.
-2.  Click and drag the patch file from the browser or your folder onto the new track you just created.
-    *   If it's an **instrument**, drop it onto the MIDI track. The patch will load in the Device View at the bottom of the screen.
-
  
+
+## Step 1: Load Your Audio Files
+
+1. **Open Your File Explorer**:
+   - Navigate to the folder where your audio files are saved (Finder on Mac, File Explorer on Windows).
+   
+2. **Drag and Drop Files**:
+   - Arrange your windows to see both Ableton Live and your audio folder.
+   - Drag each audio file individually into its own dedicated audio track in Ableton Live.
+   - In **Arrangement View**, drag each file to the start of a different track on the timeline.
+   - In **Session View**, drag each file into an empty clip slot on a different track column.
+
+## Step 2: Load and Map the Gesture Control Patches
+
+### 1. Create a New MIDI Track for the Patches:
+- Go to `Create > Insert MIDI Track`.
+- **Mac Shortcut**: `Shift + Cmd + T`
+- **Windows Shortcut**: `Shift + Ctrl + T`
+ 
+### 2. Load a Patch into the Track:
+- Locate your patch files. 
+- Drag the desired patch file (e.g., `RHX.amxd`) onto the newly created track. The patch will appear in the Device View at the bottom of the screen, showing its control dials.
+
+### 3. Map the Control Dial to a Parameter:
+- Click on the title bar of the patch device to select it.
+- Enter Ableton's mapping mode by clicking the `MIDI` map button in the bottom right corner. Clear button on the left botton corner rest all the previos mapping. 
+- All mappable parameters in your session will turn yellow. Click on the parameter you wish to control (e.g., a filter's Frequency knob).
+- Click on the dial within your Max for Live patch. A mapping will be created.
+- Your gesture will now control the audio parameter in real-time
+
+### 4. Combine Multiple Patches:
+- To control multiple parameters with different gestures, drag more patches onto the same or different MIDI track. It does not matter as long as it is not in the same track as ur audio file. 
+- Example: Use `RHX.amxd` to control a filter and `RHY.amxd` to control reverb send. You can now control both effects independently with one hand.Or do one to many mapping through duplicate the mapping tracks. 
+
+## The Patch Library: Your Gesture Vocabulary
+
+Here are the primary patches available for use. Mix and match them to build your instrument. Again see updates in python file for extended vocabulary. 
+
+### Core Control Patches
+- `RHX.amxd`: Right Hand X-axis. Controls a dial based on horizontal hand movement.
+- `RHY.amxd`: Right Hand Y-axis. Controls a dial based on vertical hand movement.
+- `LHX.amxd`: Left Hand X-axis.
+- `LHY.amxd`: Left Hand Y-axis.
+
+### Expressive Musical Patches that done in my other max file but you could also used the built in audio effect through dials mapping in ableton live.
+- **Pitch Control Patch**: Maps a gesture to a musical pitch. Useful for playing melodies or arpeggios.
+- **Velocity Control Patch**: Maps the speed of your gesture to a dial. A faster hand movement results in a higher dial value. Perfect for controlling note velocity or effect intensity.
+- **Volume Control Patch**: A dedicated patch for controlling track volume or expression.
+
+### Experimental Patches
+- **Air Drumming Patch (In-Progress)**: Detects percussive "hit" gestures and sends a trigger that can be mapped to a drum rack or sampler. (just like aeroband without the stick) This is still under development.
+
+## Advanced Mapping Techniques
+
+### One-to-Many Control
+Use a single gesture to control multiple parameters.
+1. Load a patch (e.g., `RHX.amxd`) twice.
+2. Map the dial from the patch to your first parameter (e.g., Filter Cutoff).
+4. Map the same dial to a second parameter (e.g., Reverb Send).
+5. Now, a single horizontal hand movement will control both parameters simultaneously. You can adjust the mapping ranges in MAx (by adjusting the movement range of the needle to avoid extreme value or by implementing mathematical function for non linear mapping) for more nuanced control.
+
+
+With this setup, you have independent, one to many mapping, four-dimensional control over your mix using just two hands.
+
+## Troubleshooting
+
+- **Dials are not moving?**
+  1. Confirm the Python script is running and sending OSC data.
+  2. Double-check that the IP address and Port number in the Max patch match what the Python script is sending to.
+  3. Use an OSC monitor application to verify that OSC messages are being received on your machine.
+
+- **Control is jerky or unresponsive?**
+  - This is likely an issue with the computer vision script. Ensure you have good lighting and a clear background for the best camera tracking results.
+
+- **How do I change the sensitivity or range of a dial?**
+  - In Ableton: After mapping a dial, reset the Min and Max range for the parameter. This is the easiest way to adjust sensitivity.
+  - In Max for Live: For more advanced control, you can open any patch in Max for Live and adjust the internal scale and smoothing objects to change the range and responsiveness of the dial itself. 
+
