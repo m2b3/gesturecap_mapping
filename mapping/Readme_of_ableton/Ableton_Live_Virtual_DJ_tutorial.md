@@ -98,7 +98,7 @@ Example use:
 
 *   The most powerful effects are those used sparingly and with intention. A single, well-timed filter sweep is more effective than constant, chaotic effects.  
  
-
+## **Here is the instruction for customisation**
 ## Step 1: Load Your Audio Files
 
 1. **Open Your File Explorer**:
