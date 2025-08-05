@@ -42,7 +42,6 @@ This system tracks hand movements and converts them into real-time control messa
 - **Modular design** - control one parameter in one batch and customisable.
 - **Direct Ableton Live integration** via Max for Live devices (.amxd patches)
 - **Configurable landmark control** - fingers, palm, wrist positions, and more
-- **GPU acceleration** with MediaPipe for smooth processing
 - **Network flexibility** - local or remote OSC communication
 
 ## Getting Started
