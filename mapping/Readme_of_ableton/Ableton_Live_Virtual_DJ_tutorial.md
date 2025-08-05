@@ -90,11 +90,9 @@ Example use:
     *   While still sweeping with LHX, start with RHX to introduce the stutter effect. 
 4.  **The Release (The "Drop"):**
     *   On the first beat of the drop, **move both hand downwards simultaneously**.
-      
-### **Creative Combinations to Explore**
 
-*   **The Atmospheric Fade-Out:** Combine the left downward movement with right upward movement to make the track sound like it's fading into a distant, dubby space.
-*   **The Vocal Spotlight:** During a vocal section, engage the LHX(again one parameter mapped to at least 3 effect parameter to make it sounds more complex) to isolate the vocal and mid-range instruments, creating an intimate moment.
+*    Combine the left downward movement with right upward movement to make the track sound like it's fading into a distant, dubby space.
+*    During a vocal section, engage the LHX(again one parameter mapped to at least 3 effect parameter to make it sounds more complex) to isolate the vocal and mid-range instruments, creating an intimate moment.
 
 ## **Tips**
 
