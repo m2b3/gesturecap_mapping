@@ -66,7 +66,7 @@ To run this system, you will need the following software and hardware:
 To run, you'll need the following Python libraries installed:
 ### Installation
 
-Before running the system, make sure you have the necessary Python libraries installed. You can install them using **pip** by running the following commands:
+Before running the system, make sure you have the necessary Python libraries installed. You can install them using **pip** by running the following commands.
 
 ```bash
 pip install opencv-python
@@ -74,20 +74,17 @@ pip install mediapipe
 pip install python-osc
   
 ```
-
+The project should have a requirements.txt file that lists all the necessary Python libraries, which i have not properly done yet. Also the GestureCap project uses MediaPipe for hand and pose tracking. If gesture recognition used then will need to download the hand_landmarker.task and pose_landmarker_lite.task files and place them in the root directory of the project.
 ### 1. Clone the Repository
 
 To clone the repository to your local machine, open your terminal or command prompt and run the following command:
 
+First, you'll need to prepare your system with the necessary tools and clone the repository. You need to download the project files to your computer. You can do this using the    ``` git clone ``` command in your terminal. The project recommends using uv, a faster alternative to pip, for managing Python packages. You can install it using pip. It is a good practice to create a virtual environment to manage project-specific dependencies. You can create one using uv and then activate it
+
 ```bash
-git clone https://github.com/JiaxiWang05/gesturecap_mapping.git
-
-  
+git clone https://github.com/m2b3/gesturecap_mapping.git
+cd gesturecap_mapping
 ```
-
-
-
-
 2. **Navigate to the Repository**
 
 Once the repository is cloned, navigate into the project folder:
@@ -96,12 +93,7 @@ cd gesturecap_mapping
 ```
 3. Run the Script
 
-Once everything is set up, you can start the system by running the Python script.
-   
-```bash
-python src/python/Realtime_Hand_Coordinate.py
-
-```
+Once everything is set up, you can start the system by running the Python script.  
 This will launch the hand gesture control system, with your webcam tracking hand movements and sending OSC messages to control MAX Dials. 
 
 5. Stopping the Program
