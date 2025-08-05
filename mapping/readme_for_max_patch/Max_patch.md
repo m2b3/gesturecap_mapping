@@ -52,7 +52,7 @@ Hit Detection Algorithm → Audio Engine → Real-Time Feedback
 
 # Beep_New
 
-**Beep_New** is a Max/MSP patch that generates a sine wave tone with a decaying amplitude envelope each time it receives a specific message over the network via UDP. The core functionality involves listening for incoming data, filtering for a trigger message, and activating an audio synthesis chain.
+**Beep_New** is a Max/MSP patch that generates a sine wave tone with a decaying amplitude envelope each time it receives a specific message over the network via UDP. The core functionality involves listening for incoming data, filtering for a trigger message, and activating an audio synthesis chain. This Beep_new patch is demanded by Deepansh when connecting macbook with his latency setup.
 
 ### UDP Input
 - The `udpreceive 11111` object listens for data sent to port **11111** on the local machine.
