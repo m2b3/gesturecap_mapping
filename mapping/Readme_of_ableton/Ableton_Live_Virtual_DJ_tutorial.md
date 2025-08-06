@@ -2,7 +2,7 @@
 
 
 ## **Overview**
-This custom-built DJ template reimagines how musicians interact with Digital Audio Workstations (DAWs) like Max for Live and Ableton Live by replacing traditional MIDI controllers with gesture recognition powered by Mediapipe. 
+Control Ableton Live parameters using hand gestures captured by camera. This system replaces physical MIDI controllers with computer vision, allowing you to manipulate filters, effects, and volume through hand movements in 3D space.
 
 Credit to Ellie Kelly, Manuel López,Noa Kemp for helping in constructing this patch. Credit to Martin Daigle for the base patch and the support.
 
@@ -69,7 +69,7 @@ When the project opens, you'll be in Ableton's **Session View**.
 *   **Audio Tracks 1-5:** These are vertically aligned and I labeled them as `BASS`, `DRUM`, `GUITAR`, `KEYBOARD`, `OTHER`. These are the channels for the audio files.
 *   **Audio Track 6 (`Dials`):**  **All audio from tracks 1-5 is mapped to a sound effects through dials.**
    
-### **Step 3: The Critical Task - Importing Your Audio**
+### **Step 3: Importing Your Audio**
 
 1.  **Prepare Files:** Have the folder containing five audio stems (bass.wav, drum.wav, etc.) open and visible on screen.
 
@@ -78,7 +78,7 @@ When the project opens, you'll be in Ableton's **Session View**.
     *   Move your cursor over the Ableton Live window and drop the file directly onto the main grid area of the track labeled `BASS`. A new audio clip representing bassline will appear in the first available slot.
 
 3.  **Repeat for All Stems:** 
-The mapping I have made: ( you could customise by simplily click map on the screen to mape the dials to the audio effect parameter, the dial are controlled by x, y coordinate of both hand's landmark 8, and could be easily customised too.) 
+Here are the mappings I've created:( you can customize by simply clicking map on the screen to mape the dials to the audio effect parameter, the dial are controlled by x, y coordinate of both hand's landmark 8, and could be easily customised too.) 
  Here are some example mapping i have done so far
 
 *   **`LHX` — AUTO FILTER (Low-Pass Filter Sweep)**
@@ -88,7 +88,7 @@ The mapping I have made: ( you could customise by simplily click map on the scre
     *  Sends a temporary, high-feedback burst of echo to the track, creating a classic delay tail that fades out.
     *  The effect will trigger as u wave and then decay naturally. Maybe could be used for the end of a vocal phrase, adding drama to a single drum hit, or creating a sense of space during a transition.
  This is one to many mapping. You could produce multiple mapping by duplicate the mapping track and map the dials to your desired parameter. 
-*   **`LHX' — BASS KILL:** Instantly removes all low-end frequencies. Use this to create tension and make the bass drop feel even more powerful when you bring it back in.
+*   **`LHX' — BASS KILL:** Instantly removes all low-end frequencies. 
 
 Example use:
 1.  **The Setup (8 bars before the drop):** Let the track play normally. Get a feel for the rhythm.
@@ -100,7 +100,7 @@ Example use:
 4.  **The Release (The "Drop"):**
     *   On the first beat of the drop, **move both hand downwards simultaneously**.
 
-*    Combine the left downward movement with right upward movement to make the track sound like it's fading into a distant, dubby space.
+*    Combine the left downward movement with right upward movement to make the track sound like it's fading into a distant, echo-heavy space.
 *    During a vocal section, engage the LHX(again one parameter mapped to at least 3 effect parameter to make it sounds more complex) to isolate the vocal and mid-range instruments, creating an intimate moment.
 
 ## **Tips**
@@ -187,5 +187,14 @@ Here are the primary patches available for use. Mix and match them to build your
 
 - **How do I change the sensitivity or range of a dial?**
   - In Ableton: After mapping a dial, reset the Min and Max range for the parameter. This is the easiest way to adjust sensitivity.
-  - In Max for Live: For more advanced control, you can open any patch in Max for Live and adjust the internal scale and smoothing objects to change the range and responsiveness of the dial itself. 
+  - In Max for Live: For more advanced control, you can open any patch in Max for Live and adjust the internal scale and smoothing objects to change the range and responsiveness of the dial itself.
+ 
+    API Documentation
+/righthand/x    Float32: 0.0 to 1.0
+/righthand/y    Float32: 0.0 to 1.0  
+/lefthand/x     Float32: 0.0 to 1.0
+/lefthand/y     Float32: 0.0 to 1.0
+
+Also 	increase audio buffer size, reduce sample rate if needed if there is a audio dropouts
+    
 
