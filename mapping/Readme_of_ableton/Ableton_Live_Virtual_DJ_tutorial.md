@@ -44,7 +44,7 @@ Instead of relying on a single complex Max patch that handles multiple landmarks
 
 ## **Prerequisites**
 1. **Ableton Live** (with Max for Live installed).
-2. **Python Gesture Recognition Script** running and sending OSC messages to the correct IP and port. (refer to `python.md` or `debugging.md` (ongoing) for troubleshooting if necessary).
+2. **Python Gesture Recognition Script** running and sending OSC messages to the correct IP and port. (refer to `python.md` or `debugging.md` (ongoing) for troubleshooting if necessary). But general tips to check: check Python version and dependencies be installed and configure it properly. Python script can be obtained in the python folder. 
  
  
 
