@@ -8,7 +8,7 @@
 3. [Zoneplaying](#key-technical-goals)
 4. [dynamicmapping](#planned-features)
 5. [Dials](#development-timeline)
-6. [Velocity_control](#technical-architecture)
+ 
  
 
 
@@ -235,4 +235,25 @@ OSC Input → Route /trigger → Unpack Data → Dynamic Selection → Amplitude
 - **No sound**: Check audio is enabled and buffer contains valid sample
 - **No OSC reception**: Verify port is not blocked by firewall
 - **Unexpected amplitudes**: Confirm dynamic_level values are 0, 1, or 2
+
+ 
+ 
+
+## Dials
+
+The patch uses several key Max for Live components:
+- **live.object** and **live.remote~** for parameter communication
+- **M4L.api** modules for parameter name retrieval and path management
+- Custom scaling algorithms for motion-to-audio parameter conversion
+- - **Collision detection**: Prevents mapping a parameter to itself to avoid feedback loops
+- - **Bidirectional scaling**: Uses zmap functionality for flexible range mapping that can invert signal direction
+
+
   
+ 
+ 
+ 
+ 
+
+ 
+ 
