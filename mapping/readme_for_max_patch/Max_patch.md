@@ -8,6 +8,7 @@
 3. [Zoneplaying](#key-technical-goals)
 4. [dynamicmapping](#planned-features)
 5. [Dials](#development-timeline)
+6. [Oscillator Synthesiser] 
  
  
 
@@ -25,29 +26,16 @@ This project methodology is directly inspired by two seminal academic papers:
 - **"Air Drums: A Computer Vision Based Drum Simulator"** by Kaan C. Fidan et al. (Sabanci University)
 - **"Virtual Musical Instruments: Air Drums"** by Birnbaum et al.
 
-## Key Technical Goals
-- **High-Speed Tracking**: 100+ FPS camera processing for accurate motion capture
-- **Predictive Hit Detection**: Kalman Filter implementation for sub-10ms response times
-- **Dynamic Audio Engine**: Velocity-sensitive sample playback with multiple layers
+ 
  
 ## Planned Features
 - Precise drum zone mapping based on realistic kit layouts
-- Multi-criteria hit validation to prevent false positives
+ 
+ 
+ 
  
 
-## Development Timeline
-## Technical Architecture (Planned)
-```
-Camera → Mediapipe → Kalman Filter Tracking → 
-Hit Detection Algorithm → Audio Engine → Real-Time Feedback
-```
- 
-
- 
-- **Camera**: 100+ FPS capable (essential for tracking accuracy)
-- **Lighting**: Consistent, controlled lighting environment
- 
- 
+  
 
 
 # Beep_New
@@ -159,28 +147,13 @@ This creates four distinct regions (0-3) that map to different drum sounds.
    - **Region 3**: Hi-hat
 
  
-
-## Technical Details
-
-### **Signal Flow**
-```
-OSC Input → Coordinate Processing → Region Detection → Sample Triggering → Audio Mix → Output
-```
-
-### **Latency Considerations**
-- The patch includes `line~ 10` for smooth parameter changes
-- Buffer-based playback ensures immediate sound triggering
-
-### **Performance Notes**
-- All samples are preloaded into buffers for instant playback
-- Volume scaling prevents clipping with multiple simultaneous triggers
-
+ 
 ## Future Development
 
 ### **Planned Enhancements**
 - **Timpani physics simulation**: Implementing concentric zone mapping for authentic timpani behavior
 - **3D motion capture**: Adding Z-axis depth sensing for gesture dynamics
-- **Visual feedback**: Jitter-based visualization of hand tracking
+ 
 
 
 
@@ -250,10 +223,29 @@ The patch uses several key Max for Live components:
 
 
   
- 
- 
- 
- 
+ # Oscillator Synthesiser ( very similar to Louis's work) 
 
+## Overview
+This Max/MSP patch creates a dual oscillator synthesiser controlled via UDP communication. The patch receives OSC-style messages over UDP to control two independent audio oscillators with differing characteristics whilst providing real-time visual feedback of the generated audio signals.
+
+## Features
+- **UDP Control Interface**: Receives control messages on port 11112
+- **Dual Oscillator Design**: Two independent audio generators with different frequency ranges and behaviours
+- **Real-time Parameter Control**: Frequency, amplitude, and trigger controls via network messages
  
+### Signal Flow
+1. UDP messages → OSC router → parameter scaling
+2. Scaled parameters → line~ smoothing → oscillator control
+3. Oscillator output → amplitude modulation → gain stage
+4. Final signal → stereo output + visual monitoring
+
+### Parameter Scaling
+- **Q parameter**: Input range [-2, 7] → Output range [2000] Hz
+- **C parameter**: Input range [1000][7000] → Output range [2000] Hz
+- **Smoothing**: 20ms linear ramps for parameter changes
+ 
+## Troubleshooting
+- **No Audio**: Check that `ezdac~` is enabled and audio interface is properly configured 
+- **Parameter Issues**: Ensure incoming values are within the expected ranges for each parameter
+
  
