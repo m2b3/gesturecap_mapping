@@ -238,14 +238,5 @@ This Max/MSP patch creates a dual oscillator synthesiser controlled via UDP comm
 2. Scaled parameters → line~ smoothing → oscillator control
 3. Oscillator output → amplitude modulation → gain stage
 4. Final signal → stereo output + visual monitoring
-
-### Parameter Scaling
-- **Q parameter**: Input range [-2, 7] → Output range [2000] Hz
-- **C parameter**: Input range [1000][7000] → Output range [2000] Hz
-- **Smoothing**: 20ms linear ramps for parameter changes
  
-## Troubleshooting
-- **No Audio**: Check that `ezdac~` is enabled and audio interface is properly configured 
-- **Parameter Issues**: Ensure incoming values are within the expected ranges for each parameter
-
  
