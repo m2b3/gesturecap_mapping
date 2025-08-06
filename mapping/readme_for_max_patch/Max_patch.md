@@ -14,7 +14,7 @@
 
 
 # CV-Drums: Computer Vision Based Air Drum Simulator
-** Status: This project is currently ongoing and under active development **
+** Status: This project is currently ongoing and have not been developed  **
 
 
 
