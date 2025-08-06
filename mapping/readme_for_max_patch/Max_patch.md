@@ -196,13 +196,6 @@ OSC Input → Route /trigger → Unpack Data → Dynamic Selection → Amplitude
 ```
 
 
-### Dynamic Level Processing  
-- **select 0 1 2**: Routes dynamic levels to appropriate amplitude ranges
-  - **0 (pp)**: Routes to scale 0-1 → 0.2-0.4 (pianissimo)
-  - **1 (mf)**: Routes to scale 0-1 → 0.6-0.8 (mezzo-forte)  
-  - **2 (ff)**: Routes to scale 0-1 → 0.9-1.0 (fortissimo)
-- **funnel 3**: Combines scaled amplitude values
-
 ## Setup Instructions
 
 ### 1. Load Audio Sample
@@ -212,13 +205,17 @@ OSC Input → Route /trigger → Unpack Data → Dynamic Selection → Amplitude
 ### 2. OSC Configuration
 - Ensure your Python script sends OSC messages to correct port 
 - Messages should follow the format: `/trigger [trigger_id] [pos_x] [pos_y] [dynamic_level]`
+- [dynamic_level]` could be done in max
 
 ### 3. Audio Setup
 - Enable audio processing in Max/MSP (Options → Audio Status)
 - Adjust system audio levels as needed
  
-## Dynamic Levels
+ 
 
+### Dynamic Level Processing  
+- **select 0 1 2**: Routes dynamic levels to appropriate amplitude ranges
+  
 | Level | Musical Term | Amplitude Range | Description |
 |-------|--------------|-----------------|-------------|
 | 0 | pp (pianissimo) | 0.2 - 0.4 | Very soft |
@@ -236,6 +233,6 @@ OSC Input → Route /trigger → Unpack Data → Dynamic Selection → Amplitude
 ## Troubleshooting
 
 - **No sound**: Check audio is enabled and buffer contains valid sample
-- **No OSC reception**: Verify port 8072 is not blocked by firewall
+- **No OSC reception**: Verify port is not blocked by firewall
 - **Unexpected amplitudes**: Confirm dynamic_level values are 0, 1, or 2
   
