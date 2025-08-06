@@ -13,7 +13,7 @@ Here is the demo video showcasing the system in action:
 [![Watch the demo on YouTube](https://img.youtube.com/vi/GaFYIN7mUcI/maxresdefault.jpg)](https://www.youtube.com/watch?v=GaFYIN7mUcI)
 
  
-[Watch demo on YouTube](https://www.youtube.com/watch?v=another-video-id)
+[Watch demo on YouTube](https://img.youtube.com/vi/GaFYIN7mUcI/maxresdefault.jpg)](https://www.youtube.com/watch?v=GaFYIN7mUcI)
 
 
 Instead of relying on a single complex Max patch that handles multiple landmarks simultaneously, this system uses multiple simple patches that can be combined as needed. Each patch serves a specific function. Musicians can load only the patches required for a specific performance. 
