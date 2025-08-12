@@ -8,7 +8,8 @@
 3. [Zoneplaying](#key-technical-goals)
 4. [dynamicmapping](#planned-features)
 5. [Dials](#development-timeline)
-6. [Oscillator Synthesiser] 
+6. [Oscillator Synthesiser]
+7. [gridmatching]
  
  
 
@@ -232,11 +233,14 @@ This Max/MSP patch creates a dual oscillator synthesiser controlled via UDP comm
 - **UDP Control Interface**: Receives control messages on port 11112
 - **Dual Oscillator Design**: Two independent audio generators with different frequency ranges and behaviours
 - **Real-time Parameter Control**: Frequency, amplitude, and trigger controls via network messages
+
+
  
 ### Signal Flow
 1. UDP messages → OSC router → parameter scaling
 2. Scaled parameters → line~ smoothing → oscillator control
 3. Oscillator output → amplitude modulation → gain stage
 4. Final signal → stereo output + visual monitoring
- 
- 
+
+   
+ [![Watch the video](https://img.youtube.com/vi/fJyM2MHSdm8/0.jpg)](https://youtu.be/fJyM2MHSdm8)
