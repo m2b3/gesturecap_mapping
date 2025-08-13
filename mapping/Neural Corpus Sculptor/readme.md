@@ -26,6 +26,7 @@ This instrument turns hand movement into sound by navigating a map of sounds and
 - A player: when a point is selected, the system triggers/plays that sound segment via SP Tools’ corpus player/sampler. 
 - Optional small neural net could be done (MLP Multilayer Perceptron): maps gesture position/speed to extra parameters?
 
+used index jump ask “which item is closest to (x,y) right now?” quickly, without checking every point.
 ## Step-by-step flow
 1) Load a corpus  
 - SP Tools lets a corpus (JSON + audio) be loaded and browsed; it includes analysis, filtering, and unified playback tools like sp.corpusplayer~ and sp.corpusmatch  
