@@ -4,70 +4,56 @@
 
 
 
+## Video Demonstrations
+
+
+Here are two videos demonstrating the project:
+[![Video 2](https://img.youtube.com/vi/JtPypMQWIvg/maxresdefault.jpg)](https://www.youtube.com/watch?v=JtPypMQWIvg)
+
+ ## Video Demonstrations
+[![Video 1](https://img.youtube.com/vi/NQOicRW4z3Q/default.jpg)](https://www.youtube.com/watch?v=NQOicRW4z3Q)
+
+
+
+moving across the map browses similar sounds, because I tried to make all close sounds together to get closeness in the feature map  to reflect similarity in content.
+
+nearest‑neighbour index avoids checking every sound for each tiny movement 
+
+query point and a corpus point :straight‑line distance between two points
+live X,Y position at  camera at this exact moment
+ask the question “which sound is closest right now?” on the feature map.
+
+* A stored point on the same feature map that represents a sound  
+    * All items in the corpus each have their own point, so the dataset becomes a cloud of points on the map.
+
+
+* The matcher takes the current query point (live X,Y) and finds the corpus point that is closest to it on the map.
+* That “nearest” corpus point’s metadata tells the player which file/segment to trigger.
+* As the query point moves, the nearest corpus point may change, causing different sounds to be selected.
+
+
+
+
 This Max/MSP patch is basically originally for a **control and testing station** for a music hardware device called the **Erae Touch** from SP tools and I modified it to change the input to gesture data.
 
 
 In the original design, it also shows **How hard** you’re pressing or some extra dimension of pressure (Z value). I need to find a suitable way to mimic it.It is hard to adapted 
-- Multiple touches at the same time 
+- it can read multiple touches at the same time but my version can not 
 - **Where** you’re touching (X and Y position)
  
-- And it can also **light up** in different colours, so you can give visual feedback to the player
-
-This patch lets you:
-
-- **Connect** your Erae Touch to Max/MSP
-- **Read the touch data** from it
-- **Make it light up** in various colour patterns
+- And it can also **light up** in different colours, so you can give visual feedback to the player 
 - **Play sounds** depending on where and how you touch it
 - **Divide the playing surface into zones**, so each area does different things
 - **Load different sets of sounds** and match touches to them
 
-***
-
-### Why this was created
-The developer made this to:
-
-1. **Teach people** how to use the `sp.eraetouch` object inside Max.
-2. **Debug/test** the device before using it in a live performance or project.
-3. Offer **examples**: from very simple (one zone, one set of sounds) to more complex (four zones, multiple colour modes).
-4. Serve as an official **help patch**, so anyone installing the SP-Tools package can quickly try things out.
-
-***
-
-## 2. The patch in parts (big picture)
-
-The patch has **tabs** (subpatchers) for different demonstrations:
-
-| Tab name | What it does |
-|----------|--------------|
-| **p basic** | Shows the very simplest use: connect, touch, play a few sounds, and maybe control volume with pressure. |
-| **p colours** | Lets you change and test how colours appear on the Erae Touch lights, with various styles and offsets. |
-| **p "multiple zones"** | Splits the Erae Touch into 4 separate areas. Each has its own set of sampled sounds to play. |
-| **p ?** | An empty placeholder for future experiments or instructions. |
-
-***
-
-## 3. How it works – step-by-step with reasons
-
-Let’s now break down what happens when you use the patch.
-
-***
-
-### Step 1: Connecting to the Erae Touch
+  ### Step 1: Connecting to the Erae Touch
 - The main interface to the device is an **abstraction** called `sp.eraetouch.maxpat`.
 - This handles the **conversation** between Max and the hardware using OSC (Open Sound Control) messages.
-- It can **auto-connect** to your Erae Touch, but there’s also an **"initialise"** button if it doesn’t connect automatically.
-
-**Why:**  
-The abstraction means you don’t need to rewrite the code for reading OSC, parsing values, and lighting LEDs every time. It keeps things neat and reusable.
-
-***
-
-### Step 2: Reading touch data (XYZ)
+  
 - When you touch the surface, the device sends three numbers:
   - **X** position (left to right)
   - **Y** position (bottom to top)
-  - **Z** value (pressure or extra depth info)
+  - **Z** value (pressure or extra depth info, but not really being used in my case)
 - Inside the patch, these are pulled apart with `unjoin 3` so you can see and use each one separately.
 
 **Why:**
@@ -76,7 +62,7 @@ Separating the values means you can map them to completely different controls �
 ***
 
 ### Step 3: Matching your touch to sounds
-- The patch uses another helper object called `sp.gridmatch`.
+- The patch uses another subpatch called `sp.gridmatch`.
 - This takes the X and Y and **matches** them to items in something called a **corpus**.
 - A corpus is basically a catalogue of sound samples, each with a position in this XY “feature space”.
 - Then `sp.corpusplayer~` plays the matched sound.
@@ -92,144 +78,10 @@ The corpus system makes it easy to load entirely different sound libraries witho
 - In the examples, different corpuses are loaded:
   - Voice samples
   - Speech
-  - Percussion (Plumbutter)
-  - Chinese instrument samples
-- In multi-zone mode, each zone can have its own player, so multiple people can touch different parts and get different sound worlds.
+  - Percussion  
+   
 
-**Why:**
-Separating playback from matching means you can swap out the sound set or change the matching rules without touching the audio system.
-
-***
-
-### Step 5: Lighting up the device
-- The patch can send colour messages to the Erae Touch LEDs.
-- In the **p colours** tab, you can choose colour styles such as:
-  - Linear
-  - Rainbow
-  - Cyclic
-  - HSL (Hue-Saturation-Lightness)
-  - Greyscale
-  - Colourblind-friendly
-- You can also add a **hue offset** to shift the overall colour scheme.
-
-**Why:**
-Visual feedback helps the performer **see** what’s going on or where sounds are mapped — especially on a big surface where you can’t always hear small changes instantly.  
-Different maps can be used for **aesthetics** or **accessibility** (e.g. high contrast for colourblind users).
-
-***
-
-### Step 6: Zones in multi-zone mode
-- The **p "multiple zones"** tab sets the Erae Touch into **four zones**.
-- Each zone:
-  - Listens to touches only in its own area
-  - Has its own `sp.gridmatch` and `sp.corpusplayer~`
-  - Plays its own sounds
-- OSC `route` objects make sure touches get sent to the right zone.
-
-**Why:**
-This is ideal for collaborative performances (multiple players) or one player controlling different musical layers with separate areas of the touchpad.
-
-***
-
-## 4. Helpful extras in the patch
-
-- **Speed limiting** (`speedlim`)  
-  Limits how fast data is sent to avoid overloading Max or the hardware with too many messages.
-
-- **Comment notes** throughout  
-  These explain what things do and warn about dangers (e.g., changing certain parameters too fast can crash the hardware).
-
-- **Visual number boxes**  
-  Let you see the exact numeric X, Y, Z values coming from your touch.
-
-- **Corpus loading buttons**  
-  Simple message boxes to load a specific JSON corpus.
-
-***
-
-## 5. Why the design is like this
-
-The design choices are about **clarity, flexibility, and safety**:
-
-- **Clarity:**  
-  Separate tabs for different features makes learning easier — you can try colours without worrying about multi-zone routing, or play sounds without thinking about colour settings.
-
-- **Flexibility:**  
-  The same `sp.eraetouch` core is reused everywhere, so you could drop it into your own patch and connect it to entirely different instruments or visuals.
-
-- **Safety:**  
-  Speed limiting and cautionary notes prevent accidental crashes (important in live settings).
-
-***
-
-## 6. Where to find things in each tab
-
-### **p basic**
-- Top left → Load corpus button  
-- Middle → `sp.eraetouch` controller  
-- Bottom → Sound player and output
-
-### **p colours**
-- Left side → Load corpus and match sounds  
-- Right side → All the colour map buttons and hue offset controls
-
-### **p "multiple zones"**
-- Four sections in a grid, each with:
-  - Load corpus button
-  - `sp.gridmatch`
-  - `sp.corpusplayer~`  
-- OSC routing at the top splits touches to each section
-
-***
-
-✅ **Summary:**  
-This patch is both a **tool** for exploring the Erae Touch and a **manual in patch form**. It shows you how to:
-- Connect the controller
-- Read its touch data
-- Map interactions to sounds
-- Control LED feedback
-- Work with multiple zones
-
-And everything is done in this modular way **because** it’s easier to reuse, teach, and maintain.
-
-***
-
-If you’d like, I can also draw a **simple diagram** showing how the data flows from your finger on the Erae Touch to the final sound and lights — that would make it even clearer visually.  
-
-Do you want me to make that diagram next?
-
-[1] https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/50480566/c0f63e74-8b12-4b4b-8388-2308966615fb/paste.txt
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Video Demonstrations
-
-
-Here are two videos demonstrating the project:
-[![Video 2](https://img.youtube.com/vi/JtPypMQWIvg/maxresdefault.jpg)](https://www.youtube.com/watch?v=JtPypMQWIvg)
-
- ## Video Demonstrations
-[![Video 1](https://img.youtube.com/vi/NQOicRW4z3Q/default.jpg)](https://www.youtube.com/watch?v=NQOicRW4z3Q)
-
+ 
 # Neural Corpus Sculptor (SP Tools + FluCoMa)
 
 This is a musical instrument you can play with **hand gestures**.
