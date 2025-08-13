@@ -1,4 +1,9 @@
-![Mermaid Chart](mapping/Neural%20Corpus%20Sculptor/Mermaid%20Chart%20-%20Create%20complex%2C%20visual%20diagrams%20with%20text.%20A%20smarter%20way%20of%20creating%20diagrams.-2025-08-13-160303.svg)
+<div align="center">
+    <img src="Mermaid Chart - Create complex, visual diagrams with text. A smarter way of creating diagrams.-2025-08-13-160303.svg" alt="Mermaid Chart" width="2000">
+</div>
+
+
+
 This Max/MSP patch is basically originally for a **control and testing station** for a music hardware device called the **Erae Touch** from SP tools and I modified it to change the input to gesture data.
 
 
