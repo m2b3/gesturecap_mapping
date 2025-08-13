@@ -6,6 +6,8 @@
     <img src="Mermaid Chart - Create complex, visual diagrams with text. A smarter way of creating diagrams.-2025-08-13-160303.svg" alt="Mermaid Chart" width="2000">
 </div>
 
+ the number of cells equals the number of corpus items on your 2D map.
+
 
 
 ## Video Demonstrations
