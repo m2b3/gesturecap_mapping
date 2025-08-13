@@ -1,3 +1,7 @@
+ 
+## Whole cycle in one breath:  
+**Gesture → (x, y)** → ask **“Which item is closest to me right now?”** using the index → get item ID(s) instantly → trigger in player →  audio out.
+
 <div align="center">
     <img src="Mermaid Chart - Create complex, visual diagrams with text. A smarter way of creating diagrams.-2025-08-13-160303.svg" alt="Mermaid Chart" width="2000">
 </div>
@@ -53,8 +57,56 @@ used index jump ask “which item is closest to (x,y) right now?” quickly, wit
 
 
 
+ 
+Think of a “corpus” as your sound library.  
+When the system starts, it loads:
+- A folder of short, analysed sounds.  
+- A JSON file that says where each sound sits on the **2D sound map**.  
+
+ 
+
+##  The **sound map**  
+
+- Analysed each sound’s “features” (MFCCs, loudness, spectral shape, etc.).  
+- Run UMAP to spread them out on a flat 2D plane where **similar sounds are placed close together**.  
+That’s why moving across the map lets you “browse” through similar sonic neighborhoods.
+
+***
+
+## 3️⃣ “Which item is closest to (x, y) right now?”  
+
+- At any moment, your hand/gesture sends an **(x, y)** position.  
+- The matcher’s job is to very quickly answer: *“Out of all my sound points, which one is the nearest to this (x, y)?”*  
+
+But — we don’t want to check all points every time (too slow).  
+Instead:
+- We make a **nearest-neighbour index** (like a KD-tree).  
+- This lets us jump straight to the closest items without scanning the whole list.
+
+***
+
+## 4️⃣ The **index jump** thing  
+The map is implicitly split into invisible “cells” (Voronoi regions).  
+- Inside one cell, the closest point ID stays the same.  
+- Cross the boundary → index suddenly changes → you get another sound.
+
+We can soften this with:
+- **k>1 nearest** and blending → don’t just grab one sound, smoothly crossfade between a few nearby.  
+ 
+
+***
+
+## 5️⃣ Play the sound  
+Once we have the nearest point’s ID:
+- Look up its metadata (file path, slice position).  
+- Tell the **corpus player** to trigger it.  
+
+If using k>1 neighbors:
+- Send multiple IDs to different players, blend their volumes by distance weights.  
+- This makes movement sound fluid instead of choppy.
 
 
+ 
 
 
 
