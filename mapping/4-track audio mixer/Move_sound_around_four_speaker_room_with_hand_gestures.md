@@ -1,7 +1,14 @@
-# Quadraphonic Equal Power Panner - Max for Live Device
+# Move sound around a four-speaker room with finger pointing - Max for Live Device
 [![Jiaxi Wang's Video](https://img.youtube.com/vi/poUQc3e6gZA/maxresdefault.jpg)](https://www.youtube.com/watch?v=poUQc3e6gZA)
 
  
+## Complete System Pipeline
+
+### **Signal Chain Overview (Followed a tutorial of https://www.youtube.com/watch?v=B5fFEKa6Rdc&ab_channel=EricAmeres) **
+```
+Audio Source → Max Patch → Ableton Live → Audio Interface → 4 Physical Speakers
+```
+
 
  
 
@@ -51,13 +58,6 @@ The sum of squared amplitudes across all speakers remains constant.
 #### **4. Gesture Integration**
  Camera-based gesture recognition and hand landmark tracking  
 
-
-## Complete System Pipeline
-
-### **Signal Chain Overview (Followed a tutorial of https://www.youtube.com/watch?v=B5fFEKa6Rdc&ab_channel=EricAmeres) **
-```
-Audio Source → Max Patch → Ableton Live → Audio Interface → 4 Physical Speakers
-```
 
 ### **Detailed Data Flow**
 
