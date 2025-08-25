@@ -4,7 +4,7 @@
 # Gesture Project — MediaPipe Import Issue (macOS with Homebrew Python)
  
 Attribution
-This gesture recorder is a build derived from MAx tutorial https://docs.cycling74.com/legacy/max8/tutorials/datachapter03 and Rodrigo’s Gesture/Pattern Recorder concept, which uses seq~ for audio-rate capture/playback with simple record/play transport controls and was originally demoed with nodes UI for visualisation. 
+This gesture recorder is a inspired and build from MAx tutorial https://docs.cycling74.com/legacy/max8/tutorials/datachapter03 and Rodrigo’s Gesture/Pattern Recorder concept, which uses seq~ for audio-rate capture/playback with simple record/play transport controls and was originally demoed with nodes UI for visualisation. 
 
  
 This patch listens for OSC messages on UDP port 11111, records the incoming gesture stream under the OSC address /RHXY, and plays it back with adjustable speed and duration. It also shows the live gesture next to the recorded one for easy comparison.
