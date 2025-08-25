@@ -3,8 +3,55 @@
  
 # Gesture Project — MediaPipe Import Issue (macOS with Homebrew Python)
  
+Attribution
+This gesture recorder is a build derived from Rodrigo’s Gesture/Pattern Recorder concept, which uses seq~ for audio-rate capture/playback with simple record/play transport controls and was originally demoed with nodes UI for visualisation.
+
+ 
+This patch listens for OSC messages on UDP port 11111, records the incoming gesture stream under the OSC address /RHXY, and plays it back with adjustable speed and duration. It also shows the live gesture next to the recorded one for easy comparison.
 
 ## Overview
+- The patch receives OSC on port 11111 and filters messages with the address **/RHXY**. These values drive the gesture displays and the recorder.  
+- A recorder stores the incoming events with timing so they can be played back later at the same or different speed.  
+- Two displays show “Original Gesture” (live OSC input) and “Recorded Gesture” (playback), so it’s easy to see they match.
+
+## Setup
+- Make sure the OSC sender targets the correct machine IP and UDP port 11111.  
+- Send gesture data as OSC messages with address /RHXY and numeric values (for example: /RHXY x y).  
+ 
+## Controls
+- record: Start recording. This resets timing and begins capturing incoming messages.  
+- end: Stop recording and set the length of the captured pattern.  
+- play: Play from the start of the recorded pattern.  
+- stop: Stop playback without erasing the data.  
+- clear: Stop playback and erase the recorded data.  
+- speed <number>: Change how fast playback runs (1 = normal, 0.5 = half-speed, 2 = double-speed).  
+- duration <minutes>: Set the total buffer length used to compute the playback clock.
+
+## How it works
+- Incoming OSC (/RHXY) is routed to the recorder and to the “Original Gesture” display.  
+- A phasor (a repeating ramp) provides the clock that drives playback. The phasor frequency is based on duration and scaled by speed.  
+- During playback, recorded events are emitted according to the clock and drawn in the “Recorded Gesture” display.
+
+## Typical workflow
+1. Start the OSC sender and confirm messages arrive as /RHXY on port 11111.  
+2. Click record and perform the gesture.  
+3. Click end to finish recording.  
+4. Adjust duration and speed if needed.  
+5. Click play to hear/see the recorded gesture. Use stop to pause or clear to erase.
+
+## Notes and tips
+- Keep using the /RHXY address for consistency; if different sub-addresses are needed (like /RHXY/1), consider splitting the address into parts before routing.  
+- If nothing is received, check firewall settings, IP/port, and that messages include a leading slash in the address.  
+- If timing feels off, verify duration and speed values, since they set the playback clock.
+
+ 
+## Extending the patch
+- Add save/load to store and recall recorded patterns.  
+- Allow multiple OSC addresses (e.g., multiple fingers/controllers) and record each on separate tracks.  
+- Add looping regions or reverse playback by changing the phasor logic and control messages.
+ 
+
+## Overview of python code
 
 - The project was executed with Homebrew’s Python at /opt/homebrew/bin/python3.  
 - MediaPipe was not installed in that interpreter, and pip was blocked by PEP 668 “externally managed environment” protections, which prevent global installs under Homebrew’s Python.  
