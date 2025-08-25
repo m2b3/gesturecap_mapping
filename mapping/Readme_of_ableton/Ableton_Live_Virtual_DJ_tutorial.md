@@ -198,3 +198,40 @@ Here are the primary patches available for use. Mix and match them to build your
 Also 	increase audio buffer size, reduce sample rate if needed if there is a audio dropouts
     
 
+The XY patch that being added recently 
+ 
+
+# XY OSC Filter Controller (Max)
+
+It receives XY gesture data over OSC, maps it to filter controls (frequency, gain, Q), and can optionally send feedback back to TouchOSC.
+
+## Features
+- Receives OSC messages on UDP port 11111 with address /RHXY and two float values (X Y).
+- Splits X and Y, displays them, and maps them to filtergraph~ and related controls.
+- X controls frequency (20–20000 Hz). Y controls gain/Q with an inverted range to match typical XY pads.
+ 
+## Getting Started
+
+1. Open the patch in Max.
+2. Configure the OSC sender:
+   - Host: the computer running Max.
+   - Port: 11111.
+   - Address: /RHXY.
+   - Payload: two floats (X Y), 0. to 1.
+3. Move the XY control in the sender; X and Y number boxes will update in the patch.
+4. Observe filtergraph~ update in real time as values are mapped to frequency, gain, and Q. Use these to drive audio filters like biquad~. 
+ 
+ 
+
+## Mapping
+
+- Incoming XY to filter controls:
+  - X → Frequency: scale 0. 1. 20. 20000. 
+  - Y → Inverted control: scale 1. 0. 0. 6. (maps 0–1 to 6–0 for gain/Q-like response). 
+
+- Feedback back to XY (TouchOSC):
+  - Frequency to 0–1: scale 20. 20000. 0. 1.
+  - Inverted Y to 0–1: scale 0. 6. 1. 0.
+ 
+  -  The patch’s purpose is to receive XY OSC data, map it to filter controls, and optionally send feedback; it will not make sound until a signal source and audio output objects are added.You can make a simple start by adding cycle~ 220 for a simple sine oscillator as the sound source.
+ 
