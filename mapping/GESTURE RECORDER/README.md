@@ -1,9 +1,9 @@
 [![Watch the video](https://img.youtube.com/vi/ViE02xZ1R0Y/0.jpg)](https://www.youtube.com/watch?v=ViE02xZ1R0Y)
 
  
-# Gesture Project — MediaPipe Import Issue (macOS with Homebrew Python)
+# Attribution
  
-Attribution
+
 This gesture recorder is a inspired and build from MAx tutorial https://docs.cycling74.com/legacy/max8/tutorials/datachapter03 and Rodrigo’s Gesture/Pattern Recorder concept, which uses seq~ for audio-rate capture/playback with simple record/play transport controls and was originally demoed with nodes UI for visualisation. 
 
  
