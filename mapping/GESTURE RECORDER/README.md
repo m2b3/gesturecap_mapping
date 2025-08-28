@@ -4,7 +4,7 @@
 # Attribution
  
 
-This gesture recorder is a inspired and build from MAx tutorial https://docs.cycling74.com/legacy/max8/tutorials/datachapter03 and Rodrigo’s Gesture/Pattern Recorder concept, which uses seq~ for audio-rate capture/playback with simple record/play transport controls.
+This gesture recorder is inspired and build from MAx tutorial https://docs.cycling74.com/legacy/max8/tutorials/datachapter03 and Rodrigo’s Gesture/Pattern Recorder concept, which uses seq~ for audio-rate capture/playback with simple record/play transport controls.
 
  
 This patch listens for OSC messages on UDP port 11111, records the incoming gesture stream under the OSC address /RHXY, and plays it back with adjustable speed and duration. It also shows the live gesture next to the recorded one for easy comparison.
